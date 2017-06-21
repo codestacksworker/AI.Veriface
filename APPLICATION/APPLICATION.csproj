@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA924A94-72A2-4443-9370-A081597A48FC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SENSING.APPLICATION</RootNamespace>
+    <AssemblyName>Startup</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C454D67393EEF0815189F2B3A1B61456065194A2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>APPLICATION_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.DZVideoActiveXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\AxInterop.DZVideoActiveXLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxReadFileActiveXControlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\AxReadFileActiveXControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.Data">
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.Data\CodeStacks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.Gmap.Wpf, Version=1.17.6.5, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\CodeStacks.Gmap.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.PopWindow, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.PopWindow\CodeStacks.PopWindow.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.UIElements, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.UIElemnts\CodeStacks.UIElements.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.UserControl">
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.UserControl\CodeStacks.UserControl.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeStacks.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.Wpf\CodeStacks.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="DZVideoWpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\DZVideoWpf.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.7.1706.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.DZVideoActiveXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>RefSrc\Interop.DZVideoActiveXLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.6\lib\net45\LiveCharts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.6\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Modeling.Sdk.11.0.4.0.30319\lib\net\Microsoft.VisualStudio.Modeling.Sdk.11.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>RefSrc\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sylapse.MainThreadDispatch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sylapse.MainThreadDispatch.1.0.3\lib\net45\Sylapse.MainThreadDispatch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Thrift, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ApacheThrift.0.9.3\lib\Thrift.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\AppConfigs.cs" />
+    <Compile Include="Common\NpoiExtend.cs" />
+    <Compile Include="Common\OperaExcel.cs" />
+    <Compile Include="Common\OperateFiles.cs" />
+    <Compile Include="Models\ViewDataModel.cs" />
+    <Compile Include="Models\WarningMessageCmd.cs" />
+    <Compile Include="Services\IThirtfService.cs" />
+    <Compile Include="Services\ThirftService.cs" />
+    <Compile Include="Services\UIServerInter.cs" />
+    <Compile Include="ViewModels\CaptureRecordQuery\CaptureFuncViewModel.cs" />
+    <Compile Include="ViewModels\CaptureRecordQuery\CaptureRecordQueryViewModel.cs" />
+    <Compile Include="ViewModels\CaptureRecordQuery\CaptureViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\ChannelInfoViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\ChannelListItemViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\ChannelManageViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\InitializationViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\UtilitiesViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManage\WarningMessageWindowViewModel.cs" />
+    <Compile Include="ViewModels\CompOfRecords\CommandViewModel.cs" />
+    <Compile Include="ViewModels\CompOfRecords\CommandFuncViewModel.cs" />
+    <Compile Include="ViewModels\CompOfRecords\InitViewModel.cs" />
+    <Compile Include="ViewModels\CompOfRecords\PropertiesViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\TemplateManager\PropertiesViewModel.cs" />
+    <Compile Include="ViewModels\TemplateManager\TemplateManagerViewModel.cs" />
+    <Compile Include="ViewModels\TemplateManager\TemplateMgrCmdViewModel.cs" />
+    <Compile Include="ViewModels\TemplateManager\TempleteImportPopViewModel.cs" />
+    <Compile Include="ViewModels\TemplateManager\TempleteInfoPopViewModel.cs" />
+    <Compile Include="Views\CaptureRecordQuery\CaptureRecordQuery.xaml.cs">
+      <DependentUpon>CaptureRecordQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\ChannelCompare.xaml.cs">
+      <DependentUpon>ChannelCompare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\ChannelInfo.xaml.cs">
+      <DependentUpon>ChannelInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\ChannelManage.cs" />
+    <Compile Include="Views\ChannelManage\ChannelManage.xaml.cs">
+      <DependentUpon>ChannelManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\VideoPreview.xaml.cs">
+      <DependentUpon>VideoPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\WarningMessageControls\WarningDataControl.xaml.cs">
+      <DependentUpon>WarningDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChannelManage\WarningMessageWindow.xaml.cs">
+      <DependentUpon>WarningMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompOfRecords\CompOfRecords.xaml.cs">
+      <DependentUpon>CompOfRecords.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompOfRecords\SearchContentControl.xaml.cs">
+      <DependentUpon>SearchContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralControls\RadarControl.xaml.cs">
+      <DependentUpon>RadarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateManager\TemplateManager.xaml.cs">
+      <DependentUpon>TemplateManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateManager\TempleteImportPop.xaml.cs">
+      <DependentUpon>TempleteImportPop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateManager\TempleteInfoPop.xaml.cs">
+      <DependentUpon>TempleteInfoPop.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Styles\CommonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\GalleryDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CaptureRecordQuery\CaptureRecordQuery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\ChannelCompare.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\ChannelInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\ChannelManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\VideoPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\WarningMessageControls\WarningDataControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChannelManage\WarningMessageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CompOfRecords\CompOfRecords.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CompOfRecords\SearchContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GeneralControls\RadarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignUpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TemplateManager\TemplateManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TemplateManager\TempleteImportPop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TemplateManager\TempleteInfoPop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="AppConfig\appsettings.json" />
+    <None Include="AppConfig\areainfo.json" />
+    <None Include="AppConfig\portinfo.json" />
+    <None Include="AppConfig\realtimecaptureinfo.json" />
+    <None Include="isnotused.ownmd" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\2-比对记录查询.png" />
+    <Resource Include="Images\BarDown.png" />
+    <Resource Include="Images\BarDown_S.png" />
+    <Resource Include="Images\BarUp.png" />
+    <Resource Include="Images\BarUp_S.png" />
+    <Resource Include="Images\bar_center.png" />
+    <Resource Include="Images\cmp_bg.png" />
+    <Resource Include="Images\cmp_top-bar.png" />
+    <Resource Include="Images\IP端口.png" />
+    <Resource Include="Images\Loading.png" />
+    <Resource Include="Images\no video不带字背景.png" />
+    <Resource Include="Images\no video背景.png" />
+    <Resource Include="Images\warning_bg-block.png" />
+    <Resource Include="Images\warning_bg-block_fg.png" />
+    <Resource Include="Images\warning_bg.png" />
+    <Resource Include="Images\warning_click-big.png" />
+    <Resource Include="Images\warning_click.png" />
+    <Resource Include="Images\warning_closewindow.png" />
+    <Resource Include="Images\warning_底部工具栏.png" />
+    <Resource Include="Images\warning_静止-big.png" />
+    <Resource Include="Images\warning_静止.png" />
+    <Resource Include="Images\上一页按钮未点亮.png" />
+    <Resource Include="Images\上一页按钮点亮.png" />
+    <Resource Include="Images\上字未点亮状态.png" />
+    <Resource Include="Images\上字点亮状态.png" />
+    <Resource Include="Images\下一页按钮未点亮.png" />
+    <Resource Include="Images\下一页按钮点亮.png" />
+    <Resource Include="Images\下字未点亮状态.png" />
+    <Resource Include="Images\下字点亮状态.png" />
+    <Resource Include="Images\主体大背景.jpg" />
+    <Resource Include="Images\主界面-视频预览-主界面.jpg" />
+    <Resource Include="Images\主界面恢复.png" />
+    <Resource Include="Images\主界面最大化.png" />
+    <Resource Include="Images\主界面最小化.png" />
+    <Resource Include="Images\主界面背景.png" />
+    <Resource Include="Images\人脸抓拍参数设置.png" />
+    <Resource Include="Images\修改.png" />
+    <Resource Include="Images\修改未点亮.png" />
+    <Resource Include="Images\删除未点亮.png" />
+    <Resource Include="Images\删除点亮.png" />
+    <Resource Include="Images\删除点亮状态.png" />
+    <Resource Include="Images\刷新按钮.png" />
+    <Resource Include="Images\叉.png" />
+    <Resource Include="Images\叉1.png" />
+    <Resource Include="Images\叉2.png" />
+    <Resource Include="Images\发现可疑人员.png" />
+    <Resource Include="Images\右侧下方照片比对背景.png" />
+    <Resource Include="Images\右侧背景条.png" />
+    <Resource Include="Images\告警.png" />
+    <Resource Include="Images\图像源参数设置.png" />
+    <Resource Include="Images\图片查询按钮.png" />
+    <Resource Include="Images\子菜单之批量导入说明.png" />
+    <Resource Include="Images\子菜单之提示框.png" />
+    <Resource Include="Images\子菜单之提示框取消按钮未点亮.png" />
+    <Resource Include="Images\子菜单之提示框取消按钮点亮状态.png" />
+    <Resource Include="Images\子菜单之提示框确定按钮未点亮.png" />
+    <Resource Include="Images\子菜单之提示框确定按钮点亮状态.png" />
+    <Resource Include="Images\子菜单之查看抓拍详细信息.png" />
+    <Resource Include="Images\子菜单之查看比对记录.png" />
+    <Resource Include="Images\子菜单之查看比对记录中间背景.png" />
+    <Resource Include="Images\子菜单之查看比对记录抓拍按钮未点亮.png" />
+    <Resource Include="Images\子菜单之查看比对记录抓拍按钮点亮状态.png" />
+    <Resource Include="Images\子菜单之注册详细信息.png" />
+    <Resource Include="Images\子菜单修改模板.png" />
+    <Resource Include="Images\子菜单告警.png" />
+    <Resource Include="Images\子菜单批量导入之保存错误照片按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之保存错误照片按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之导入模板文件按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之导入模板文件按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之导入说明按钮未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之导入说明按钮点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入之错误地址未点亮.png" />
+    <Resource Include="Images\子菜单批量导入之错误地址点亮状态.png" />
+    <Resource Include="Images\子菜单批量导入背景.png" />
+    <Resource Include="Images\子菜单模板管理下方相框背景.png" />
+    <Resource Include="Images\子菜单模板管理右侧相框背景.png" />
+    <Resource Include="Images\子菜单添加模板.png" />
+    <Resource Include="Images\导入查询照片.png" />
+    <Resource Include="Images\尾字未点亮状态.png" />
+    <Resource Include="Images\尾字点亮状态.png" />
+    <Resource Include="Images\尾页按钮未点峦.png" />
+    <Resource Include="Images\尾页按钮点亮.png" />
+    <Resource Include="Images\左侧上方背景.png" />
+    <Resource Include="Images\左侧下方左右进度条旁边深颜色.png" />
+    <Resource Include="Images\左侧下方背景.png" />
+    <Resource Include="Images\左侧蓝色条.png" />
+    <Resource Include="Images\扫描进度条.png" />
+    <Resource Include="Images\批量导入未点亮.png" />
+    <Resource Include="Images\批量导入点亮状态.png" />
+    <Resource Include="Images\抓拍比对详细信息.png" />
+    <Resource Include="Images\抓拍照片.png" />
+    <Resource Include="Images\抓拍照片1.png" />
+    <Resource Include="Images\抓拍照片抓拍通道抓拍时间背景.png" />
+    <Resource Include="Images\抓拍照片纯背景.png" />
+    <Resource Include="Images\抓拍结果上部分.png" />
+    <Resource Include="Images\抓拍结果背景带边框线.png" />
+    <Resource Include="Images\抓拍记录上一页未点亮.png" />
+    <Resource Include="Images\抓拍记录下一页未点亮.png" />
+    <Resource Include="Images\抓拍记录尾页未点亮.png" />
+    <Resource Include="Images\抓拍记录首页未点亮.png" />
+    <Resource Include="Images\抓拍识别区下方蓝色图案.png" />
+    <Resource Include="Images\抓拍识别区下方转到第几页中间方框未点亮状态.png" />
+    <Resource Include="Images\抓拍识别区下方转到背景框未点亮状态.png" />
+    <Resource Include="Images\抓拍识别区域照片背景.png" />
+    <Resource Include="Images\按钮未点亮.png" />
+    <Resource Include="Images\按钮点亮.png" />
+    <Resource Include="Images\新logo.png" />
+    <Resource Include="Images\旋转图形.png" />
+    <Resource Include="Images\旋转图形1.png" />
+    <Resource Include="Images\无照片前景框.png" />
+    <Resource Include="Images\条件查询未点亮.png" />
+    <Resource Include="Images\条件查询点亮状态.png" />
+    <Resource Include="Images\查询.png" />
+    <Resource Include="Images\查询点亮.png" />
+    <Resource Include="Images\查询照片.png" />
+    <Resource Include="Images\标题栏.png" />
+    <Resource Include="Images\标题栏比对记录抓拍记录模板管理栏背景.png" />
+    <Resource Include="Images\模板照片.png" />
+    <Resource Include="Images\模板照片纯背景 .png" />
+    <Resource Include="Images\模板照片纯背景.png" />
+    <Resource Include="Images\模板管理右侧下方背景.png" />
+    <Resource Include="Images\模板管理左侧下方大背景.png" />
+    <Resource Include="Images\比对照片1.png" />
+    <Resource Include="Images\比对照片纯背景.png" />
+    <Resource Include="Images\比对结果列表背景.png" />
+    <Resource Include="Images\比对结果列表背景1.png" />
+    <Resource Include="Images\深醒科技.png" />
+    <Resource Include="Images\深醒科技英文.png" />
+    <Resource Include="Images\添加未点亮.png" />
+    <Resource Include="Images\添加模板之取消为主照片.png" />
+    <Resource Include="Images\添加模板之取消为主照片未点亮.png" />
+    <Resource Include="Images\添加模板之取消未点亮.png" />
+    <Resource Include="Images\添加模板之取消点亮状态.png" />
+    <Resource Include="Images\添加模板之浏览未点亮.png" />
+    <Resource Include="Images\添加模板之浏览点亮状态.png" />
+    <Resource Include="Images\添加模板之添加为主照片.png" />
+    <Resource Include="Images\添加模板之添加为主照片点亮.png" />
+    <Resource Include="Images\添加模板之确定未点亮.png" />
+    <Resource Include="Images\添加模板之确定点亮状态.png" />
+    <Resource Include="Images\添加模板之移除.png" />
+    <Resource Include="Images\添加模板之移除点亮状态.png" />
+    <Resource Include="Images\添加点亮状态.png" />
+    <Resource Include="Images\添加点亮状态1.png" />
+    <Resource Include="Images\添加通道.png" />
+    <Resource Include="Images\添加通道参数设置.png" />
+    <Resource Include="Images\添加通道参数设置点亮.png" />
+    <Resource Include="Images\添加通道图像源参数设置.png" />
+    <Resource Include="Images\添加通道子菜单.png" />
+    <Resource Include="Images\添加通道子菜单（修改）.png" />
+    <Resource Include="Images\添加通道重新生成编号.png" />
+    <Resource Include="Images\添加通道重新生成编号点亮.png" />
+    <Resource Include="Images\照片查询未点亮.png" />
+    <Resource Include="Images\照片查询点亮状态.png" />
+    <Resource Include="Images\照片背景.png" />
+    <Resource Include="Images\照片边框.png" />
+    <Resource Include="Images\照片选取后前景.png" />
+    <Resource Include="Images\照片选取后背景.png" />
+    <Resource Include="Images\照片选取后背景有文字.png" />
+    <Resource Include="Images\登录.png" />
+    <Resource Include="Images\登录01.png" />
+    <Resource Include="Images\登录02.png" />
+    <Resource Include="Images\登陆.png" />
+    <Resource Include="Images\登陆按钮点亮.png" />
+    <Resource Include="Images\移除查询照片.png" />
+    <Resource Include="Images\翻页未点亮.png" />
+    <Resource Include="Images\翻页点亮.png" />
+    <Resource Include="Images\视频预览上.png" />
+    <Resource Include="Images\视频预览下.png" />
+    <Resource Include="Images\视频预览中.png" />
+    <Resource Include="Images\设置窗口布局未点亮状态.png" />
+    <Resource Include="Images\设置窗口布局点亮状态.png" />
+    <Resource Include="Images\识别抓拍栏中间区域最底层深色背景.png" />
+    <Resource Include="Images\识别抓拍结果下部分.png" />
+    <Resource Include="Images\识别比对背景框未点亮状态.png" />
+    <Resource Include="Images\识别比对背景框点亮状态.png" />
+    <Resource Include="Images\识别结果上部分.png" />
+    <Resource Include="Images\转到背景框.png" />
+    <Resource Include="Images\选中记录背景条.png" />
+    <Resource Include="Images\通道名称背景.png" />
+    <Resource Include="Images\通道栏下方右三角未点亮状态.png" />
+    <Resource Include="Images\通道栏下方右三角未点亮状态1.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标1.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标2.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标3.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之中间点亮状态.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之最左侧点亮状态.png" />
+    <Resource Include="Images\通道栏下方添加删除修改按钮背景图标之最左侧点亮状态3.png" />
+    <Resource Include="Images\通道栏下方背景.png" />
+    <Resource Include="Images\通道栏各通道点亮时背景.png" />
+    <Resource Include="Images\通道栏大背景.png" />
+    <Resource Include="Images\通道栏左侧摄像机未点亮状态.png" />
+    <Resource Include="Images\通道栏左侧摄像机点亮状态.png" />
+    <Resource Include="Images\通道确认.png" />
+    <Resource Include="Images\通道确认点亮.png" />
+    <Resource Include="Images\通道管理区背景.png" />
+    <Resource Include="Images\重置为默认值未点亮.png" />
+    <Resource Include="Images\重置为默认值点亮状态.png" />
+    <Resource Include="Images\雷达背景.png" />
+    <Resource Include="Images\首字未点亮状态.png" />
+    <Resource Include="Images\首字点亮状态.png" />
+    <Resource Include="Images\首页按钮未点亮.png" />
+    <Resource Include="Images\首页按钮点亮.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LOGO.ico" />
+    <Resource Include="Images\top-line.png" />
+    <Resource Include="Images\photo_border.png" />
+    <Resource Include="Images\轨迹分析-bg.png" />
+    <Resource Include="Images\轨迹分析-icon-停止.png" />
+    <Resource Include="Images\轨迹分析-icon-后退.png" />
+    <Resource Include="Images\轨迹分析-icon-快进.png" />
+    <Resource Include="Images\轨迹分析-icon-播放.png" />
+    <Resource Include="Images\轨迹分析-icon-暂停.png" />
+    <Resource Include="Images\轨迹分析-人员信息-背景框.png" />
+    <Resource Include="Images\轨迹分析-任务框.png" />
+    <Resource Include="Images\轨迹分析-时间框.png" />
+    <Resource Include="Images\首页-bg-弹出框背景.png" />
+    <Resource Include="Images\首页-cion-灰色摄像头.png" />
+    <Resource Include="Images\iconCut.png" />
+    <Resource Include="Images\首页-icon-在线.png" />
+    <Resource Include="Images\首页-icon-弹出框关闭_.png" />
+    <Resource Include="Images\首页-icon-报警.png" />
+    <Resource Include="Images\首页-icon-离线.png" />
+    <Resource Include="Images\首页-icon-红色摄像头.png" />
+    <Resource Include="Images\首页-icon-红色框.png" />
+    <Resource Include="Images\home-icon-bluecamera.png" />
+    <Resource Include="Images\首页-icon-蓝色框.png" />
+    <Resource Include="Images\首页-摄像机.png" />
+    <Resource Include="Images\首页-bg-弹出框背景.jpg" />
+    <Resource Include="AppConfig\AreaInfo.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="AppConfig\CaptureRealTimeInfo.xml" />
+    <Resource Include="AppConfig\IdentifyRealTimeInfo.xml" />
+    <Resource Include="AppConfig\userinfo.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Images\home-icon-redcamera.png" />
+    <Resource Include="Images\non-photo.jpg" />
+    <Resource Include="Images\unkonw.png" />
+    <Resource Include="Images\frame_orange.png" />
+    <Resource Include="Images\frame_red.png" />
+    <Resource Include="Images\frame_yellow.png" />
+    <Resource Include="Images\设置-press.png" />
+    <Resource Include="Images\设置.png" />
+    <Resource Include="Images\red.png" />
+    <Resource Include="Images\unkonw.jpg" />
+    <Resource Include="Images\warning_bg-block_fg1.png" />
+    <Resource Include="Images\yellow.png" />
+    <Resource Include="Images\报警_normal.png" />
+    <Resource Include="Images\报警_press.png" />
+    <Resource Include="Images\orange.png" />
+    <Resource Include="Images\user\user.png" />
+    <Resource Include="Images\user\wallet.png" />
+    <Resource Include="Gallery\refresh.3d.png" />
+    <Resource Include="Gallery\add.document.png" />
+    <Resource Include="Gallery\edit.document.png" />
+    <Resource Include="Gallery\search.png" />
+    <Resource Include="Gallery\camera.3d.png" />
+    <Resource Include="Gallery\data.sync.png" />
+    <Resource Include="Gallery\multiwindow.right.top.png" />
+    <Content Include="RefSrc\AxInterop.DZVideoActiveXLib.dll" />
+    <Content Include="RefSrc\AxReadFileActiveXControlLib.dll" />
+    <Content Include="RefSrc\DZVideoWpf.dll" />
+    <Content Include="RefSrc\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="RefSrc\Interop.DZVideoActiveXLib.dll" />
+    <Content Include="RefSrc\NPOI.dll" />
+    <Content Include="RefSrc\NPOI.OOXML.dll" />
+    <Content Include="RefSrc\NPOI.OpenXml4Net.dll" />
+    <Content Include="RefSrc\NPOI.OpenXmlFormats.dll" />
+    <Content Include="RefSrc\ReadFileActiveXControlLib.dll" />
+    <Content Include="RefSrc\opencv_ffmpeg2411_64.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.Data\CodeStacks.Data.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\CodeStacks.Gmap.Wpf.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\GMap.NET.Core.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\GMap.NET.WindowsPresentation.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\x64s\SQLite.Interop.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.GMap\x86s\SQLite.Interop.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.Log\CodeStacks.Log.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.PopWindow\CodeStacks.PopWindow.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.UIElemnts\CodeStacks.UIElements.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.UserControl\CodeStacks.UserControl.dll" />
+    <Content Include="RefSrc\xiaowen.codestacks.wpf\CodeStacks.Wpf\CodeStacks.Wpf.dll" />
+    <Content Include="Resources\Audio\ALARM1.WAV" />
+    <Content Include="Resources\Audio\ALARM2.WAV" />
+    <Content Include="Resources\Audio\ALARM3.WAV" />
+    <Content Include="Resources\Audio\ALARM4.WAV" />
+    <Content Include="Resources\Audio\ALARM5.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BI_MODULES\PLUGIN.INTELLIGENT.csproj">
+      <Project>{8701c704-4f5a-476e-84dd-de4ff1be531a}</Project>
+      <Name>PLUGIN.INTELLIGENT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DATA.MODELS\DATA.MODELS.csproj">
+      <Project>{bff9b8b6-ca07-4106-8d6c-415240e51388}</Project>
+      <Name>DATA.MODELS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DATA.UTILITIES\DATA.UTILITIES.csproj">
+      <Project>{3d45054d-348a-4d47-95aa-3a7b75218b56}</Project>
+      <Name>DATA.UTILITIES</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PLUGIN.DATABASESETTINGS\PLUGIN.DATABASESETTINGS.csproj">
+      <Project>{db345413-acd7-4e16-8d6d-4ded7ebbbeff}</Project>
+      <Name>PLUGIN.DATABASESETTINGS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SC_MODULES\PLUGIN.STATIC.csproj">
+      <Project>{31558ad3-ace0-4394-b0a7-151cd1d41f99}</Project>
+      <Name>PLUGIN.STATIC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SENSING.THRIFT\SENSING.THRIFT.csproj">
+      <Project>{34272b86-3441-4a42-9c16-919cbca6c2c1}</Project>
+      <Name>SENSING.THRIFT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SETTINGS_MODULES\PLUGIN.APPSETTINGS.csproj">
+      <Project>{2b255b41-9853-4b32-a623-4a9e1db2b816}</Project>
+      <Name>PLUGIN.APPSETTINGS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\THRIFTSERVICES\THRIFT.csproj">
+      <Project>{34272b86-3441-4a42-9c16-919cbca6c2c1}</Project>
+      <Name>THRIFT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TR_MODULES\PLUGIN.TRACE.csproj">
+      <Project>{c6e63e73-1903-4243-9611-da0105213181}</Project>
+      <Name>PLUGIN.TRACE</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="..\SENSING.UTILITIES\SENSING.UTILITIES.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

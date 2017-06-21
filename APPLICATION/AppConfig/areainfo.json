@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Account": "",
+    "Flag": 5,
+    "CameraName": "74-camera",
+    "ReceivedClientIp": {
+      "Ip": "192.16.1.23"
+    },
+    "AlarmNum": "",
+    "Threshold": 65.0
+  },
+  {
+    "Account": "",
+    "Flag": 6,
+    "CameraName": "74-camera",
+    "ReceivedClientIp": {
+      "Ip": "192.16.1.21"
+    },
+    "AlarmNum": "",
+    "Threshold": 65.0
+  }
+]

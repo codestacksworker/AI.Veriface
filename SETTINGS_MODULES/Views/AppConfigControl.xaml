@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SETTINGS_MODULES.Views.AppConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SETTINGS_MODULES.Views"
+             mc:Ignorable="d" 
+             Background="BlanchedAlmond"
+             d:DesignHeight="700" d:DesignWidth="900" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5" HorizontalAlignment="Right">
+            <Button Content="保 存" Width="80" Height="23"
+                    Background="Black" Foreground="White"
+                    Command="{Binding SaveAppconfigCommand}"
+                    CommandParameter="{Binding AppConfigs}"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="1" Header="应用程序初始化配置">
+            <Grid x:Name="grid" Margin="5">
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="应用程序标题"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.AppTitle,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="软件版本"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.AppVersion,Mode=TwoWay}" Width="150" Height="23" IsReadOnly="True" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="初始阈值"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.Threshold,Mode=TwoWay}" Width="150" Height="23" MaxLength="3" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="筛选/接收"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.FunctionSelect,Mode=TwoWay}" Width="150" Height="23" MaxLength="1" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20" >
+                        <TextBlock Text="所属区域"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.Region,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="接收端IP"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs.ExcelSavePath,Mode=TwoWay}" Width="150" Height="23" IsEnabled="True" MaxLength="15" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="Excel保存路径" Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="FaceUUID"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="姓 名"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="首选模板标识序号"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="类 型"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="敏感等级"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="额外信息"  Width="100" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding AppConfigs,Mode=TwoWay}" Width="150" Height="23" />
+                    </StackPanel>
+                </StackPanel>-->
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

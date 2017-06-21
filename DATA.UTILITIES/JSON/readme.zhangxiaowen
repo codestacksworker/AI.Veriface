@@ -1,0 +1,18 @@
+﻿  "whoisi": "zhangxiaowen",--
+  "debug": true,--是否启用调试模式
+  "release": false,--是否启用发布模式
+  "alarm": true,--是否启用告警功能
+  "alarm-pop": false,--是否启用告警弹窗功能，告警窗体中弹出的放大窗体
+  "auto-send": true,--自动推送
+  "mode-main": true,--显示主界面模块
+  "mode-main-snap": { },--主窗体抓拍结果操作处理
+  "mode-compare": true,--显示比对记录模块
+  "mode-compare-1": { },--选择显示比对
+  "mode-compare-static": true,--显示静态比对模块
+  "mode-snap": true,--显示
+  "mode-template": true,--显示模板管理模块
+  "mode-template-1": { },--
+  "mode-analysis-trace": true,--显示轨迹分析模块
+  "mode-analysis-intelligent": true,--显示智能分析模块
+  "mode-user-single": true,--单用户登陆
+  "mode-user-multiple": false--多用户登录

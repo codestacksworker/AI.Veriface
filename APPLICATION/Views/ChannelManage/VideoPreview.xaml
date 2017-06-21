@@ -1,0 +1,121 @@
+﻿<Window x:Class="SENSING_SINGLEUSER.Views.ChannelManage.VideoPreview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SENSING_SINGLEUSER.Views.ChannelManage"
+        mc:Ignorable="d" Title="通道视频预览"
+        Width="1366px" Height="768px"
+        Closed="Window_Closed" Icon="/Startup;component/LOGO.ico"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ImageBrush ImageSource="../../Images/首页-icon-弹出框关闭_.png" x:Key="closewindow" />
+        <Style TargetType="{x:Type GridViewColumnHeader}" x:Key="CloseGridViewColumnHeader">
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#296580">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#000000">
+                <TextBlock Text="通道视频预览" Foreground="#ffffff" VerticalAlignment="Center" FontSize="18" FontFamily="华文细黑" FontWeight="Bold"/>
+            </Grid>
+
+            <Grid x:Name="VideoPartGrid" Grid.Row="1" Visibility="Visible"/>
+
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#000000">
+                <TextBlock Text="识别结果" Foreground="#ffffff" VerticalAlignment="Center" FontSize="18" FontFamily="华文细黑" FontWeight="Bold"/>
+            </Grid>
+
+            <ListView x:Name="listViewContIdentifyResults" Grid.Row="1" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="FontFamily" Value="华文细黑" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Grid Background="Transparent">
+                                        <Border x:Name="bd" BorderThickness="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                            <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="3"/>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="bd" Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="..\..\Images\选中记录背景条.png"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource CloseGridViewColumnHeader}">
+                        <GridViewColumn Header="抓拍照片" Width="auto" x:Name="GVCCapPic">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#346381" BorderThickness="3">
+                                        <TextBlock Margin="2" Foreground="White" Width="157px" Height="175px">
+                                            <TextBlock.Background>
+                                                <ImageBrush ImageSource="{Binding SanpImage}"></ImageBrush>
+                                            </TextBlock.Background>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="详细信息" Width="auto" x:Name="GVCRegInfo">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Width="Auto" FontSize="20" FontWeight="Bold"  Foreground="White" TextAlignment ="Left" Text="{Binding RegInfo}" MinWidth="{Binding Path=ActualWidth,ElementName=GVCRegInfo}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="注册照片" Width="auto" x:Name="GVCCmpPic">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#346381" BorderThickness="3">
+                                        <TextBlock Margin="2" Width="157px" Height="175px"  Foreground="White">
+                                            <TextBlock.Background>
+                                                <ImageBrush ImageSource="{Binding TemplateImage}"></ImageBrush>
+                                            </TextBlock.Background>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="Black" />
+
+    </Grid>
+</Window>

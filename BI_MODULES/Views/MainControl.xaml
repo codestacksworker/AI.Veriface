@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SENSING.Plugin.Intelligent.Views.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SENSING.Plugin.Intelligent.Views"
+             xmlns:xiaowenviewmodel="clr-namespace:SENSING.Plugin.Intelligent.ViewModels"
+             xmlns:xiaowenprism="http://www.codeplex.com/prism"
+             xiaowenprism:ViewModelLocator.AutoWireViewModel="True"
+             d:DataContext="{d:DesignInstance xiaowenviewmodel:MainControlViewModel,IsDesignTimeCreatable=True}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+
+    <Grid Background="#296580">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.85*"/>
+            <ColumnDefinition Width="0.15*"/>
+        </Grid.ColumnDefinitions>
+
+        <local:SearchSchemaControl Grid.Column="1" Grid.RowSpan="2" />
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                      Background="#000000" />
+
+        <local:NoTargetControl Visibility="{Binding IsNotTarget,Mode=TwoWay}" />
+        <local:TargetControl  Visibility="{Binding IsTarget,Mode=TwoWay}" />
+               
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,20 @@
+﻿<xml>
+  <areainfo>
+    <type>8</type>
+    <info>91</info>
+    <ipstrs>
+      <ipstr>192.168.1.9</ipstr>
+    </ipstrs>
+    <alarmnum>1</alarmnum>
+    <threshold>70</threshold>
+  </areainfo>
+    <areainfo>
+    <type>8</type>
+    <info>21-75</info>
+    <ipstrs>
+      <ipstr>192.168.1.9</ipstr>
+    </ipstrs>
+    <alarmnum>1</alarmnum>
+    <threshold>70</threshold>
+  </areainfo>
+</xml>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <StartupPort>
+    <port>6000</port>
+  </StartupPort>
+  <UserInfo>
+    <UserID>
+    </UserID>
+    <Password>
+    </Password>
+  </UserInfo>
+  <IpAdress>
+    <IP>192.168.1.11</IP>
+    <Port>9091</Port>
+  </IpAdress>
+</Root>

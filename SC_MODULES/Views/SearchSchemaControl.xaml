@@ -1,0 +1,253 @@
+﻿<UserControl x:Class="SC_MODULES.Views.SearchSchemaControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SC_MODULES.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="160">
+
+    <UserControl.Resources>
+
+        <ImageBrush x:Key="clickbtn_notlight" ImageSource="../Images/clickbtn-notlight.png" />
+        <ImageBrush x:Key="uploadicon" ImageSource="../Images/staticcompare-icon-upload.png" />
+
+        <!--无边框按钮-->
+        <Style x:Key="noborderbtn" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ContentPresenter.Effect>
+                                    <DropShadowEffect  Color="#686868" ShadowDepth="0"></DropShadowEffect>
+                                </ContentPresenter.Effect>
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger  Property="IsMouseOver"  Value="true">
+                                <!--<Setter Property="Effect" Value="{StaticResource MouseOverEffect}"></Setter>-->
+                            </Trigger>
+                            <Trigger  Property="IsPressed"  Value="true">
+                                <Setter Property="Effect" Value="{x:Null}"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#ffffff" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="ComboBoxStyle2">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border x:Name="Back" Background="Transparent" BorderThickness="0" BorderBrush="#49BBED" >
+                                        <ContentPresenter ContentSource="{Binding Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                            <TextBlock.Foreground>White</TextBlock.Foreground>
+                                            <TextBlock.FontSize>14</TextBlock.FontSize>
+                                        </ContentPresenter>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#49BBED"></Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#49BBED"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border BorderThickness="1" BorderBrush="#49BBED" Margin="0">
+                                <Border  x:Name="bd" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Transparent" CornerRadius="0,0,0,0" Background="Transparent">
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.7*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Style="{DynamicResource RadiusTextBox}" 
+                                                 FontSize="16" x:Name="ComboBoxTextBox" Grid.ColumnSpan="2" 
+                                                 IsHitTestVisible="False" IsReadOnly="True" 
+                                                 VerticalContentAlignment="Center" BorderThickness="0" 
+                                                 TextAlignment="Center" 
+                                                 Foreground="White" Background="Transparent" 
+                                                 Text="{TemplateBinding Text}">
+                                        </TextBox>
+                                        <ToggleButton x:Name="ComboBoxToggleButton" Grid.ColumnSpan="2" 
+                                                      Style="{StaticResource ComboxStyleBtn1}" 
+                                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" 
+                                              ClickMode="Press">
+                                        </ToggleButton>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <Popup  IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" 
+                                   PopupAnimation="Slide">
+                                <Border CornerRadius="1" MaxHeight="130" MinWidth="{TemplateBinding ActualWidth}" 
+                                        x:Name="DropDown" SnapsToDevicePixels="True" >
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="..\Images\home-bg.jpg"></ImageBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" BlurRadius="2" ShadowDepth="0" Opacity="0.5"/>
+                                    </Border.Effect>
+                                    <ScrollViewer MaxHeight="130"  SnapsToDevicePixels="True" 
+                                                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" CanContentScroll="False">
+                                        <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="Transparent"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="ComboBoxTextBox" Property="IsFocused" Value="true">
+                                <Setter TargetName="Popup" Property="IsOpen" Value="true"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="#2b3135">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.8*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#000000">
+            <TextBlock Text="查询条件" Foreground="#ffffff" VerticalAlignment="Center" FontSize="18"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Margin="5">
+                <Grid Background="#DDDDDD" Width="100" Height="120" Opacity="0.8" >
+                    <Image x:Name="image" Source="{Binding SearchSchemaDatas.ImportImage,Mode=TwoWay}" Stretch="Fill" />
+                </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="" Background="{StaticResource uploadicon}" 
+                        Command="{Binding ImportImageCommand}" Width="15" Height="15"
+                        Style="{StaticResource ResourceKey=noborderbtn}" />
+                    <Button Content="导入图片" FontSize="14" Foreground="White" 
+                        Style="{StaticResource ResourceKey=noborderbtn}" Background="Transparent"
+                        Command="{Binding ImportImageCommand}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="2">
+            <StackPanel Orientation="Vertical" Grid.Row="2">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Content="分析库选择" VerticalAlignment="Center" />
+                    <ComboBox x:Name="selectDatas" ItemsSource="{Binding SearchSchemaDatas.TemplateStoreItems}"
+                          SelectedIndex="{Binding SearchSchemaDatas.TemplateStoreIndex}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                          SelectionChanged="selectDatas_SelectionChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Content="返回数量" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding SearchSchemaDatas.SearchResultAppearCountItems}"
+                          SelectedItem="{Binding SearchSchemaDatas.AppearCountValue}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                         />
+                </StackPanel>
+
+                <StackPanel x:Name="dStar" Orientation="Vertical" VerticalAlignment="Center"  Margin="5" >
+                    <Label Content="开始日期" VerticalAlignment="Center"/>
+                    <Border Background="Transparent" BorderThickness="1" BorderBrush="#49BBED" >
+                        <DatePicker MouseDoubleClick="ClearDatePickerTime" FontSize="16" Foreground="White"
+                        Background="Transparent"
+                        Text="{Binding SearchSchemaDatas.StartDateValue,Mode=TwoWay}"
+                        VerticalContentAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel x:Name="hStar" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Content="开始时辰" VerticalAlignment="Center"/>
+                    <ComboBox ItemsSource="{Binding SearchSchemaDatas.StartTimeItems}"
+                          SelectedIndex="{Binding SearchSchemaDatas.StartTimeIndex,Mode=TwoWay}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                         />
+                </StackPanel>
+
+                <StackPanel x:Name="mStar" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Content="开始分钟" VerticalAlignment="Center"/>
+                    <ComboBox ItemsSource="{Binding SearchSchemaDatas.StartMinuteItems}"
+                          SelectedItem="{Binding SearchSchemaDatas.StartMinute}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                          />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Grid.Column="0" Content="阈值设置" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding SearchSchemaDatas.ThresholdItems}"
+                          SelectedItem="{Binding SearchSchemaDatas.ThresholdValue}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}" />
+                </StackPanel>
+
+                <StackPanel x:Name="dEnd" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Content="结束日期" VerticalAlignment="Center"/>
+                    <Border  Background="Transparent" BorderThickness="1" BorderBrush="#49BBED">
+                        <DatePicker MouseDoubleClick="ClearDatePickerTime" FontSize="16" Foreground="White"
+                        Background="Transparent"
+                        Text="{Binding SearchSchemaDatas.EndDateValue,Mode=TwoWay}"
+                        VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel x:Name="hEnd" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Grid.Column="0" Content="结束时辰" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding SearchSchemaDatas.EndTimeItems}"
+                          SelectedIndex="{Binding SearchSchemaDatas.EndTimeIndex,Mode=TwoWay}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}"/>
+                </StackPanel>
+
+                <StackPanel x:Name="mEnd" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Label Grid.Column="0" Content="结束分钟"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding SearchSchemaDatas.EndMinuteItems}"
+                          SelectedItem="{Binding SearchSchemaDatas.EndMinute,Mode=TwoWay}"
+                          Background="Transparent"
+                          Style="{StaticResource ResourceKey=ComboBoxStyle2}" />
+                </StackPanel>
+
+                <StackPanel  Grid.Column="5" Grid.RowSpan="5"  VerticalAlignment="Center">
+                    <Button Foreground="White" Height="40"
+                Background="{StaticResource ResourceKey=clickbtn_notlight}"
+                Content="查 询"
+                Style="{StaticResource noborderbtn}"
+                Command="{Binding SearchCommand}"
+                CommandParameter="{Binding SearchSchemaDatas,Mode=TwoWay}">
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

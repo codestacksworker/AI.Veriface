@@ -1,0 +1,130 @@
+﻿<Window x:Class="SENSING.APPLICATION.Views.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SENSING.APPLICATION.Views"
+        xmlns:localmodel="clr-namespace:SENSING.APPLICATION.ViewModels"
+        xmlns:prism ="http://www.codeplex.com/prism"
+        mc:Ignorable="d"
+        Title="{Binding AppName}"
+        Width="1366" Height="768" MinWidth="1366" MinHeight="768"
+        Icon="/Startup;component/LOGO.ico" WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance localmodel:HomeViewModel,IsDesignTimeCreatable=True}"
+        prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Window.Resources>
+        <ImageBrush ImageSource="..\Images\标题栏比对记录抓拍记录模板管理栏背景.png" x:Key="togglebtnbg" />
+        <ImageBrush ImageSource="../Images/warning_closewindow.png" x:Key="closewindow" />
+        <ImageBrush ImageSource="..\Images\主体大背景.jpg" x:Key="homebg" />
+        <ImageBrush ImageSource="..\Images\设置.png" x:Key="settingsBtn" />
+        <ImageBrush ImageSource="..\Images\设置-press.png" x:Key="settingsBtnOver" />
+        <ImageBrush ImageSource="..\Images\报警_press.png" x:Key="settingsBtnWarn" />
+        <ImageBrush ImageSource="..\Images\报警_normal.png" x:Key="settingsBtnWarnOver" />
+        
+        <ContextMenu x:Key="mainwindowopt">
+            <MenuItem Header="服务配置" Command="{Binding CmdBusinessSettings}" CommandParameter="{Binding}">
+            </MenuItem>
+            <MenuItem Header="启用告警窗口" Command="{Binding CmdOpenAlarm}" CommandParameter="{Binding}" Visibility="{Binding IsVisibility,Mode=TwoWay}"  />
+        </ContextMenu>
+    </Window.Resources>
+
+    <Grid Background="#000000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--LOGO和标题-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.4*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Width="23px" Height="23px" Margin="10,0" Source="..\Images\新logo.png" 
+                       ContextMenu="{StaticResource ResourceKey=mainwindowopt}"></Image>
+                <TextBlock x:Name="TxtTitle" Text="{Binding AppName}" VerticalAlignment="Center" FontSize="21" 
+                           Foreground="#ffffff" Grid.Column="1" FontWeight="Bold">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Purple" ShadowDepth="5"></DropShadowEffect>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Height="40" VerticalAlignment="Top">
+                <!--<Image x:Name="settings" Width="25px" Height="25px" Margin="5" HorizontalAlignment="Left" Source="..\Images\设置.png" 
+                       ContextMenu="{StaticResource ResourceKey=mainwindowopt}" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"></Image>-->
+                <Button x:Name="btnWarn" Background="{StaticResource settingsBtnWarn}" Margin="0,5,5,0"
+                        Style="{StaticResource ResourceKey=NoBorderButton}" Width="22" Height="22"
+                        Command="{Binding CmdOpenAlarm}">
+                </Button>
+                <Button x:Name="btnSet" Background="{StaticResource settingsBtn}" Margin="0,5,5,0"
+                        Style="{StaticResource ResourceKey=NoBorderButton}" Width="22" Height="22"
+                        Command="{Binding CmdBusinessSettings}">
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!--模块按钮-->
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" >
+                <ToggleButton IsChecked="True" 
+                              Tag="0" 
+                              x:Name="ChannelManageToggleButton" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}">
+                    <ToggleButton.Background>
+                        <ImageBrush ImageSource="..\Images\主界面背景.png"></ImageBrush>
+                    </ToggleButton.Background>
+                    <TextBlock>主界面</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="1" Background="{StaticResource togglebtnbg}"
+                              x:Name="CompOfRecordsToggleButton" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>比对记录</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="2" Background="{StaticResource togglebtnbg}"
+                              x:Name="CaptureRecordQueryToggleButton" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>抓拍记录</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="3" Background="{StaticResource togglebtnbg}"
+                              x:Name="TemplateManagerToggleButton" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>模版管理</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="4" Background="{StaticResource togglebtnbg}"
+                              x:Name="StaticCompareToggleBtn" Click="FuncationToggleButton_Checked"
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>静态比对</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="5" Background="{StaticResource togglebtnbg}"
+                              x:Name="LocusAnalyzeToggleBtn" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>轨迹分析</TextBlock>
+                </ToggleButton>
+                <ToggleButton Tag="6" Background="{StaticResource togglebtnbg}"
+                              x:Name="BusinessIntelligentToggleBtn" Click="FuncationToggleButton_Checked" 
+                              Style="{StaticResource MainWindowButton}" >
+                    <TextBlock>智能分析</TextBlock>
+                </ToggleButton>
+            </StackPanel>
+            <Polyline Visibility="Visible" x:Name="ChannelManagePolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 0,0 150,0 170,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="CompOfRecordsPolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 170,40 150,0 310,0 330,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="CaptureRecordQueryPolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 330,40 310,0 470,0 490,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="TemplateManagerPolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 490,40 470,0 630,0 650,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="StaticComparePolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 650,40 630,0 790,0 810,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="LocusAnalyzePolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 810,40 790,0 950,0 970,40 1990,40"></Polyline>
+            <Polyline Visibility="Collapsed" x:Name="BusinessIntelligentPolyline" Stroke="#11E8FA" StrokeThickness="2" 
+                      Points="0,40 970,40 950,0 1110,0 1130,40 1900,40"></Polyline>
+        </Grid>
+        <!--功能界面载体-->
+        <Border Padding="2" Grid.Row="2" Grid.RowSpan="2" BorderThickness="1,0,1,1" BorderBrush="#11E8FA">
+            <ContentControl  x:Name="FuncationArea"></ContentControl>
+        </Border>
+    </Grid>
+</Window>

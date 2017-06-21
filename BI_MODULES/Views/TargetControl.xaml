@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="SENSING.Plugin.Intelligent.Views.TargetControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SENSING.Plugin.Intelligent.Views"
+             xmlns:loading="http://xiaowen.codestacks.wpf"
+             xmlns:codestacksmap="http://www.codestacks.com/xiaowen/wpf/gmap"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <ImageBrush x:Key="target_bg" ImageSource="../Images/target_bg.png" />
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource ResourceKey=target_bg}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <loading:LoadRadar Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Panel.ZIndex="10" />
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="1" Width="110" Height="140" Background="Gray" Opacity="0.6" />
+            <Image Width="90" Height="120" Source="{Binding ForTargetPage.Photo,Mode=TwoWay}" Stretch="Fill" />
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <TextBlock Text="{Binding ForTargetPage.Name,Mode=TwoWay}" Foreground="White" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="地点：" Foreground="White" />
+                    <TextBlock Text="{Binding ForTargetPage.CameraInfo.Location,Mode=TwoWay}" Foreground="White" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="日期：" Foreground="White" />
+                    <TextBlock Text="{Binding ForTargetPage.SnapDate,Mode=TwoWay}" Foreground="White" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="时间：" Foreground="White" />
+                    <TextBlock Text="{Binding ForTargetPage.SnapTime,Mode=TwoWay}" Foreground="White" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <lvc:CartesianChart x:Name="mySeries" Series="{Binding XwRowSeries}" FontSize="16">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Labels="{Binding CameraForLiveCharts}" FontSize="16" Foreground="White">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis FontSize="16" Foreground="White">
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
+
+        <codestacksmap:MyMapControl Grid.Column="1" Grid.RowSpan="2" x:Name="MainMap" />
+
+    </Grid>
+</UserControl>

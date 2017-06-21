@@ -1,0 +1,403 @@
+﻿<UserControl x:Class="SENSING.Plugin.Trace.Views.MainTraceAnalysisView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SENSING.Plugin.Trace.Views"
+             xmlns:loading="http://xiaowen.codestacks.wpf"
+             xmlns:codestacksmap="http://www.codestacks.com/xiaowen/wpf/gmap"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+
+    <UserControl.Resources>
+        <ImageBrush x:Key="searchbg" ImageSource="../Images/clickbtn-notlight.png" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <!--无边框按钮-->
+        <Style x:Key="noborderbtn" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ContentPresenter.Effect>
+                                    <DropShadowEffect  Color="#686868" ShadowDepth="0"></DropShadowEffect>
+                                </ContentPresenter.Effect>
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger  Property="IsMouseOver"  Value="true">
+                                <Setter Property="Effect" Value="{StaticResource MouseOverEffect}"></Setter>
+                            </Trigger>
+                            <Trigger  Property="IsPressed"  Value="true">
+                                <Setter Property="Effect" Value="{x:Null}"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="btnQuery" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#0E475B"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0E475B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="ComboBoxStyle2">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <!--ComBoxItem-->
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border x:Name="Back" Background="Transparent"  BorderThickness="0,0,0,0" BorderBrush="#49BBED" >
+                                        <ContentPresenter ContentSource="{Binding Source}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,0">
+                                            <TextBlock.Foreground>White</TextBlock.Foreground>
+                                            <TextBlock.FontSize>14</TextBlock.FontSize>
+                                        </ContentPresenter>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#49BBED"></Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#49BBED"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border BorderThickness="1" BorderBrush="#49BBED" Margin="0">
+                                <Border  x:Name="bd" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Transparent" CornerRadius="0,0,0,0" Background="Transparent">
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.7*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Style="{DynamicResource RadiusTextBox}" 
+                                                 FontSize="16" x:Name="ComboBoxTextBox" Grid.ColumnSpan="2" 
+                                                 IsHitTestVisible="False" IsReadOnly="True" 
+                                                 VerticalContentAlignment="Center" BorderThickness="0" 
+                                                 TextAlignment="Center" 
+                                                 Foreground="White" Background="Transparent" 
+                                                 Text="{TemplateBinding Text}">
+                                        </TextBox>
+                                        <ToggleButton x:Name="ComboBoxToggleButton" Grid.ColumnSpan="2" 
+                                                      Style="{StaticResource ComboxStyleBtn1}" 
+                                                      IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" 
+                                              ClickMode="Press">
+                                        </ToggleButton>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <Popup  IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" 
+                                   PopupAnimation="Slide">
+                                <Border CornerRadius="1" MaxHeight="130" MinWidth="{TemplateBinding ActualWidth}" 
+                                        x:Name="DropDown" SnapsToDevicePixels="True" >
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="..\Images\home-bg.jpg"></ImageBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" BlurRadius="2" ShadowDepth="0" Opacity="0.5"/>
+                                    </Border.Effect>
+                                    <ScrollViewer MaxHeight="130"  SnapsToDevicePixels="True" 
+                                                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" CanContentScroll="False">
+                                        <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="Transparent"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="ComboBoxTextBox" Property="IsFocused" Value="true">
+                                <Setter TargetName="Popup" Property="IsOpen" Value="true"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="#000000">
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <loading:LoadRadar Grid.ColumnSpan="2" Panel.ZIndex="2" />
+
+            <Grid Grid.Column="0" Panel.ZIndex="1" Background="#296580">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <codestacksmap:MyMapControl x:Name="MainMap" Panel.ZIndex="1" />
+
+                <Grid Grid.Row="1">
+                    <ListView x:Name="listViewCaptureRecord" Background="#296580"  
+                              BorderThickness="0" Foreground="#FFFFFF" FontSize="14" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                              ItemsSource="{Binding ListItemSourceObj}">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Setters>
+                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                <Grid Background="Transparent">
+                                                    <Border x:Name="bd"  BorderThickness="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                                        <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="3"/>
+                                                    </Border>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Trigger.Setters>
+                                                            <Setter TargetName="bd" Property="Background">
+                                                                <Setter.Value>
+                                                                    <ImageBrush ImageSource="..\Images\选中记录背景条.png"></ImageBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger.Setters>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style.Setters>
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource MyCmpHeaderStyle}">
+                                <GridViewColumn Header="序号" Width="120" x:Name="GVCId">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto" TextAlignment ="Center" Text="{Binding RowNumber}"  
+                                                               MinWidth="{Binding Path=ActualWidth,ElementName=GVCId}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="抓拍通道" Width="260" x:Name="GVCChannelName">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto" TextAlignment ="Center" Text="{Binding CameraInfo.Name}"  
+                                                               MinWidth="{Binding Path=ActualWidth,ElementName=GVCChannelName}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="时间" Width="300" x:Name="GVCtime1">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto" TextAlignment ="Center" Text="{Binding Datetime}"  
+                                                               MinWidth="{Binding Path=ActualWidth,ElementName=GVCtime1}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="地点" Width="340" x:Name="GVCAddress">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto" TextAlignment ="Center" Text="{Binding CameraInfo.Location}"  
+                                                               MinWidth="{Binding Path=ActualWidth,ElementName=GVCAddress}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="0" Background="#2b3135">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.7*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="#000000">
+                        <TextBlock Text="查询条件" Foreground="#ffffff" VerticalAlignment="Center" FontSize="18" FontFamily="华文细黑" FontWeight="Bold"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=" *" />
+                            <ColumnDefinition Width=" 2*"/>
+                            <ColumnDefinition Width=" *"/>
+                            <ColumnDefinition Width=" 2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal" >
+                            <TextBlock Text="开始日期"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" >
+                            <Border Background="#0E475B" BorderThickness="1" BorderBrush="#1C708D">
+                                <DatePicker Text="{Binding StartDay,Mode=TwoWay}" x:Name="DPCapStartTime" Foreground="White"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,10,0,0" Orientation="Horizontal"  >
+                            <TextBlock Text="结束日期"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="3" Margin="0,10,0,0">
+                            <Border Background="#0E475B" BorderThickness="1" BorderBrush="#1C708D">
+                                <DatePicker Text="{Binding EndDay,Mode=TwoWay}" x:Name="DPCapEndTime" Foreground="White" />
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal" >
+                            <TextBlock Text="开始时辰"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,10,0,0">
+                            <ComboBox ItemsSource="{Binding StartHours}"
+                                      SelectedIndex="{Binding StartHour,Mode=TwoWay}"
+                                      Background="Transparent"
+                                      Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                                      Foreground="White"
+                                      />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,10,0,0" Orientation="Horizontal" >
+                            <TextBlock Text="结束时辰"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,10,0,0">
+                            <ComboBox ItemsSource="{Binding EndHours}"
+                                      SelectedIndex="{Binding EndHour,Mode=TwoWay}"
+                                      Background="Transparent"
+                                      Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                                      Foreground="White"
+                                      />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal" >
+                            <TextBlock Text="开始分钟"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,10,0,0">
+                            <ComboBox ItemsSource="{Binding StartMinutes}"
+                                      SelectedIndex="{Binding StartMinute,Mode=TwoWay}"
+                                      Background="Transparent"
+                                      Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                                      />
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,10,0,0" Orientation="Horizontal" >
+                            <TextBlock Text="结束分钟"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,10,0,0">
+                            <ComboBox ItemsSource="{Binding EndMinutes}"
+                                      SelectedIndex="{Binding EndMinute,Mode=TwoWay}"
+                                      Background="Transparent"
+                                      Style="{StaticResource ResourceKey=ComboBoxStyle2}"
+                                      />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,20">
+
+                            <Button Margin="10,0,5,0" Content="查 询" Width="140" Height="40"
+                                            Click="btnCaptureRecordQuery_Click"
+                                            Foreground="White"
+                                            Style="{StaticResource ResourceKey=noborderbtn}"
+                                            Background="{StaticResource ResourceKey=searchbg}"
+                                            BorderThickness="0" BorderBrush="Transparent"/>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="#000000">
+                        <TextBlock Text="人员信息" Foreground="#ffffff" VerticalAlignment="Center" FontSize="18" FontFamily="华文细黑" FontWeight="Bold"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.25*" />
+                            <RowDefinition Height="0.25*" />
+                            <RowDefinition Height="0.25*" />
+                            <RowDefinition Height="0.25*" />
+                            <RowDefinition Height="0.25*" />
+                            <RowDefinition Height="0.25*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16" Height="140" Width="100" Background="Gray" Opacity="0.8" >
+                            <Image HorizontalAlignment="Center"
+                               Source="{Binding SnapPersonInfo.Photo}" Stretch="Fill"/>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding SnapPersonInfo.Name}" Width="{Binding ActualWidth}" FontSize="16" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="地点：" FontSize="16"/>
+                            <TextBlock Text="{Binding SnapPersonInfo.CameraInfo.Location}" Width="{Binding ActualWidth}" FontSize="16" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="来源库：" FontSize="16"/>
+                            <TextBlock Text="{Binding SnapPersonInfo.Source}" Width="{Binding ActualWidth}" FontSize="16" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="时间：" FontSize="16"/>
+                            <TextBlock Text="{Binding SnapPersonInfo.Datetime}" Width="{Binding ActualWidth}" FontSize="16" />
+                        </StackPanel>
+                    </Grid>
+                    
+                </Grid>
+
+            </Grid>
+            <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                      Background="#000000" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,10 @@
+diff a/APPLICATION/App.config b/APPLICATION/App.config	(rejected hunks)
+@@ -66,7 +66,7 @@
+     NetworkMode 网络环境 WIFI-wifi模式下工作，在频繁变更ip地址的环境中 / LAN-有线或固定ip地址的环境下 
+     -->
+     <add key="AppMode" value="DEBUG"/>
+-    <add key="AppFunction" value="PK"/>
++    <add key="AppFunction" value="PK123"/>
+     <add key="Func-AlarmDoubleClick" value="true"/>
+     <add key="Func-" value="true"/>
+     <add key="Func-AutoSignin" value="false" />
